@@ -8,15 +8,14 @@ import model.Employee;
 public class DeserializationDemo {
 
 	public static void main(String[] args) throws Exception {
-		
-		Employee.company = "Infosys";
 
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("employee.ser"));
 
-		Employee emp = (Employee) ois.readObject();
+		Employee employee = (Employee) ois.readObject();
 
 		ois.close();
 
-		System.out.println(emp);
+		System.out.println("After Deserialization");
+		System.out.println(employee);
 	}
 }

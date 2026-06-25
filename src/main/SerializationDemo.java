@@ -7,16 +7,19 @@ import model.Employee;
 
 public class SerializationDemo {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
-		Employee emp = new Employee(101, "John", "secret123", "India");
+		Employee employee = new Employee(101, "John", "secret123");
+
+		System.out.println("Before Serialization");
+		System.out.println(employee);
 
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("employee.ser"));
 
-        oos.writeObject(emp);
+		oos.writeObject(employee);
 
-        oos.close();
+		oos.close();
 
-        System.out.println("Serialized");
-    }
+		System.out.println("\nObject Serialized Successfully");
+	}
 }
