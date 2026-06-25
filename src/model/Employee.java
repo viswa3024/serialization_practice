@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,10 +34,12 @@ public class Employee implements Serializable {
 		this.name = name;
 		this.joiningDate = joiningDate;
 
-		// Defensive immutable copies
-		this.skills = List.copyOf(skills);
-		this.roles = Set.copyOf(roles);
-		this.projects = Map.copyOf(projects);
+		// Immutable + preserves order
+		this.skills = Collections.unmodifiableList(new ArrayList<>(skills));
+
+		this.roles = Collections.unmodifiableSet(new LinkedHashSet<>(roles));
+
+		this.projects = Collections.unmodifiableMap(new LinkedHashMap<>(projects));
 
 		this.address = address;
 	}

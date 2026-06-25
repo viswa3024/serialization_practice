@@ -6,15 +6,27 @@ import model.Employee;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class SerializationDemo {
 
 	public static void main(String[] args) throws Exception {
 
-		List<String> skills = new ArrayList<>(List.of("Java", "Spring Boot", "Angular"));
+		List<String> skills = new ArrayList<>();
 
-		Set<String> roles = new LinkedHashSet<>(List.of("Developer", "Reviewer"));
+		skills.add("Java");
+		skills.add("Spring Boot");
+		skills.add("Angular");
+
+		Set<String> roles = new LinkedHashSet<>();
+
+		roles.add("Developer");
+		roles.add("Reviewer");
 
 		Map<Integer, String> projects = new LinkedHashMap<>();
 
