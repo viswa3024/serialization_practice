@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 public class Employee implements Serializable {
 
-    private int id;                 // private
+	private static final long serialVersionUID = 1L;
+
+	private int id;                 // private
     private String name;            // normal instance variable
+    private String value; 
 
     private transient String password;
 
@@ -22,7 +25,9 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Employee{" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + ", company='"
-				+ company + '\'' + ", country='" + country + '\'' + '}';
+		return "Employee [id=" + id + ", name=" + name + ", value=" + value + ", password=" + password + ", country="
+				+ country + "]";
 	}
+
+
 }
