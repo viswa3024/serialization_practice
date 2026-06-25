@@ -7,16 +7,16 @@ import model.Employee;
 
 public class DeserializationDemo {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
+		
+		Employee.company = "Infosys";
 
-        FileInputStream fis = new FileInputStream("employee.ser");
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("employee.ser"));
 
-        ObjectInputStream ois = new ObjectInputStream(fis);
+		Employee emp = (Employee) ois.readObject();
 
-        Employee emp = (Employee) ois.readObject();
+		ois.close();
 
-        ois.close();
-
-        System.out.println(emp);
-    }
+		System.out.println(emp);
+	}
 }
