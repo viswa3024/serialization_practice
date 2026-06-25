@@ -1,9 +1,9 @@
 package main;
 
+import model.Employee;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-
-import model.Employee;
 
 public class DeserializationDemo {
 
@@ -15,7 +15,7 @@ public class DeserializationDemo {
 
 		ois.close();
 
-		System.out.println("After Deserialization");
+		System.out.println("===== AFTER DESERIALIZATION =====");
 		System.out.println(employee);
 	}
 }

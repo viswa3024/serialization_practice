@@ -1,50 +1,47 @@
 package model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-	private String name;
+	private final int id;
+	private final String name;
 
-	private transient String password;
+	private final LocalDate joiningDate;
 
-	public Employee(int id, String name, String password) {
+	private final List<String> skills;
+
+	private final Set<String> roles;
+
+	private final Map<Integer, String> projects;
+
+	private final Address address;
+
+	public Employee(int id, String name, LocalDate joiningDate, List<String> skills, Set<String> roles,
+			Map<Integer, String> projects, Address address) {
+
 		this.id = id;
 		this.name = name;
-		this.password = password;
-	}
+		this.joiningDate = joiningDate;
 
-	private void writeObject(ObjectOutputStream out) throws IOException {
+		// Defensive immutable copies
+		this.skills = List.copyOf(skills);
+		this.roles = Set.copyOf(roles);
+		this.projects = Map.copyOf(projects);
 
-		// Serialize normal fields
-		out.defaultWriteObject();
-
-		// Custom serialization for transient field
-		String encryptedPassword = password + "_ENC";
-
-		out.writeObject(encryptedPassword);
-	}
-
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-
-		// Deserialize normal fields
-		in.defaultReadObject();
-
-		// Read encrypted password
-		String encryptedPassword = (String) in.readObject();
-
-		// Decrypt password
-		password = encryptedPassword.replace("_ENC", "");
+		this.address = address;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee{" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + '}';
+		return "Employee{" + "\nid=" + id + ", \nname='" + name + '\'' + ", \njoiningDate=" + joiningDate
+				+ ", \nskills=" + skills + ", \nroles=" + roles + ", \nprojects=" + projects + ", \naddress=" + address
+				+ "\n}";
 	}
 }
